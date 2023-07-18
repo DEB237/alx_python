@@ -1,2 +1,2 @@
 # alx_python
-This repo is for learning python atALX
+This repo is for learning python at ALX
