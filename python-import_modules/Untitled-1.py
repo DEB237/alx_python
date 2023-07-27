@@ -1,16 +1,20 @@
+def main(argv):
+  # Get the number of arguments
+  number_of_arguments = len(argv)
 
-def print_arg(arguments):
- strlen = len(arguments)
- if strlen == 0:
-     singular_plural = "arguments."
- elif strlen == 1:
-    singular_plural = "argument:"
- elif strlen > 1:
-    singular_plural = "arguments:"
- print("{} {} " .format(strlen, singular_plural))
- for i, arg in enumerate(arguments, start = 1):
-    print("{}: {}" .format(i, arg))
+  # Print the number of arguments
+  print("Number of arguments:", number_of_arguments)
+
+  # If there are no arguments, print a message and exit
+  if number_of_arguments == 0:
+    print("No arguments.")
+    return
+
+  # Print the list of arguments
+  for index, argument in enumerate(argv):
+    print(f"{index + 1}: {argument}")
+
 
 if __name__ == "__main__":
- arguments = input().split()
- print_arg(arguments)
+  argv = input()
+  main(argv)
