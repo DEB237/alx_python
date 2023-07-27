@@ -13,7 +13,4 @@ def print_arg(arguments):
 
 if __name__ == "__main__":
  arguments = input().split()
-print_arg(arguments)
-
-   
-
+ print_arg(arguments)
