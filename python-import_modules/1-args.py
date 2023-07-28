@@ -7,7 +7,7 @@ def print_arg(arguments):
     singular_plural = "argument:"
  elif strlen > 1:
     singular_plural = "arguments:"
- print("{} {} " .format(strlen, singular_plural))
+ print("{} {}" .format(strlen, singular_plural))
  for i, arg in enumerate(arguments, start = 1):
     print("{}: {}" .format(i, arg))
 
