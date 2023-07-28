@@ -12,6 +12,6 @@ def print_arg(arguments):
     print("{}: {}" .format(i, arg))
 
 if __name__ == "__main__":
- argument = input()
- arguments = argument.split()
+ import sys  
+arguments = sys.argv[1:]
 print_arg(arguments)
