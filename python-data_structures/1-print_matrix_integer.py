@@ -1,6 +1,6 @@
 def print_matrix_integer(matrix=[[]]):
     if len(matrix) == 0:
-        print(" ",end=" ")
+        print(" ")
     
     for row in matrix:
         for i, num in enumerate(row):
