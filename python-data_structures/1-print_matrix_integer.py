@@ -1,6 +1,6 @@
 def print_matrix_integer(matrix=[[]]):
     if len(matrix) == 0 or len(matrix[0]) == 0:
-        print()
+        print() 
     else:
         for row in matrix:
             for i, num in enumerate(row):
@@ -9,5 +9,11 @@ def print_matrix_integer(matrix=[[]]):
                 else:
                     print("{:d}".format(num), end=" ")
   
-matrix = [[]]
+matrix = [
+    [1, 2],
+    [4, 5],
+    [7, 8]
+]
+
 print_matrix_integer(matrix)
+print_matrix_integer()
