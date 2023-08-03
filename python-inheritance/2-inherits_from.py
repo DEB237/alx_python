@@ -2,6 +2,7 @@
 Module that defines a function
 """
 
+
 def inherits_from(obj, a_class):
     """
     Checks if the object is an instance of a class that inherited (directly or indirectly)
