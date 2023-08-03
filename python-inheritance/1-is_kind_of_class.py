@@ -1,3 +1,6 @@
+"""
+Module that defines a function
+"""
 def is_kind_of_class(obj, a_class):
     """
     Checks if the object is an instance of or inherited from the specified class.
