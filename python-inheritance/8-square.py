@@ -2,7 +2,9 @@
 Module that defines the Square class.
 """
 
+
 Rectangle = __import__('7-rectangle').Rectangle
+
 
 class Square(Rectangle):
     """
@@ -22,4 +24,3 @@ class Square(Rectangle):
         Returns a string representation of the square.
         """
         return "[Square] {}/{}".format(self.__size, self.__size)
-    
