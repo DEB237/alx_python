@@ -6,6 +6,12 @@ class BaseGeometry:
     This class represents the base geometry.
     """
 
+    def __lt__(self, other):
+        """
+        Compares the geometry object with another object using the less-than operator.
+        """
+        pass
+
     def area(self):
         """
         Calculates the area of the geometry object.

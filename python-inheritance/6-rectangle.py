@@ -2,7 +2,7 @@
 Module that defines the Rectangle class.
 """
 
-BaseGeometry = __import__('5-base_geometry').BaseGeometry
+from 5-base_geometry import BaseGeometry
 
 class Rectangle(BaseGeometry):
     """
@@ -13,7 +13,7 @@ class Rectangle(BaseGeometry):
         """
         Initializes a rectangle object with the given width and height.
         """
-        self.__width = width
+        self.width = width
         self.__height = height
         self.integer_validator("width", width)
         self.integer_validator("height", height)
@@ -22,17 +22,17 @@ class Rectangle(BaseGeometry):
         """
         Returns a string representation of the rectangle.
         """
-        return "[Rectangle] {}/{}".format(self.__width, self.__height)
+        return "[Rectangle] {}/{}".format(self.width, self.__height)
 
     def area(self):
         """
         Calculates and returns the area of the rectangle.
         """
-        return self.__width * self.__height
+        return self.width * self.__height
 
     def __repr__(self):
         """
         Returns a string representation of the object.
         """
-        return "Rectangle({}, {})".format(self.__width, self.__height)
+        return "Rectangle({}, {})".format(self.width, self.__height)
     

@@ -1,3 +1,8 @@
+"""
+Module that defines a class
+"""
+
+
 class BaseGeometry:
     """
     Base class for geometry shapes.
