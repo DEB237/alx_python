@@ -27,3 +27,11 @@ class BaseGeometry:
         Returns a string representation of the object.
         """
         return "BaseGeometry()"
+
+    @classmethod
+    def __dir__(cls):
+        """
+        Returns a list of attributes for the class, excluding init_subclass.
+        """
+        attributes = super().__dir__()
+        return [attr for attr in attributes if attr != 'init_subclass']
