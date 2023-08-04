@@ -1,8 +1,15 @@
 """
-Module that defines a class
+Module that defines the BaseGeometry class.
 """
+
+
 class BaseGeometry:
     """
-    An empty class representing the base geometry.
+    An empty class representing the BaseGeometry.
     """
-    pass
+
+    def __init_subclass__(cls):
+        pass
+
+    def area(self):
+        pass
