@@ -7,12 +7,8 @@ class BaseGeometry:
     """
     An empty class representing the BaseGeometry.
     """
-
-    def __init_subclass__(cls):
-        pass
-
-    def area(self):
-        pass
+        
+    pass
 
     @classmethod
     def __dir__(cls):
