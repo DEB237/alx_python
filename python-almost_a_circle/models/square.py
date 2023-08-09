@@ -63,8 +63,10 @@ class Square(Rectangle):
         Raises:
             TypeError: If the value is not a positive integer.
         """
-        if not isinstance(value, int) or value <= 0:
-            raise TypeError("Size must be a positive integer")
+        if not isinstance(value, int):
+            raise TypeError("Size must be an integer")
+        if value <= 0:
+            raise ValueError("Size must be > 0")
 
         self.width = value
         self.height = value
