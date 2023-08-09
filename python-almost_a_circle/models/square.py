@@ -1,4 +1,11 @@
+'''
+This module contains a class
+'''
+
 from models.rectangle import Rectangle
+'''
+Importing Base class from base
+'''
 
 class Square(Rectangle):
     """
