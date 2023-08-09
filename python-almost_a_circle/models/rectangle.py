@@ -3,6 +3,9 @@ This module contains a class
 '''
 
 from base import Base
+'''
+Importing Base class from base
+'''
 
 
 class Rectangle(Base):
