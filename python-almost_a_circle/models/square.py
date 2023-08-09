@@ -61,10 +61,11 @@ class Square(Rectangle):
             value (int): The new length of the sides of the square.
 
         Raises:
-            ValueError: If the value is not a positive integer.
+            TypeError: If the value is not a positive integer.
         """
         if not isinstance(value, int) or value <= 0:
-            raise TypeError("Width must be an integer")
+            raise TypeError("Size must be a positive integer")
 
         self.width = value
         self.height = value
+        
