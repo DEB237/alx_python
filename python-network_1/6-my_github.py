@@ -1,3 +1,7 @@
+'''
+This module contains a function
+'''
+
 import sys
 import requests
 
@@ -30,4 +34,3 @@ if __name__ == "__main__":
         print(data["id"])
     else:
         print("None")
-        

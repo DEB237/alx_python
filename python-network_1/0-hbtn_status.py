@@ -1,3 +1,6 @@
+'''
+This module contains a function
+'''
 import requests
 
 def fetch_status(url):
@@ -15,4 +18,3 @@ def fetch_status(url):
     print("Body response:")
     print(f"\t- type: {type(response.content)}")
     print(f"\t- content: {response.content.decode()}")
-    

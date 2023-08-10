@@ -1,3 +1,7 @@
+'''
+This module contains a function
+'''
+
 import requests
 import sys
 
@@ -25,4 +29,3 @@ if len(sys.argv) > 1:
     get_request_id(url)
 else:
     print("Please provide a URL as a command-line argument.")
-    

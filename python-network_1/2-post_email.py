@@ -1,3 +1,7 @@
+'''
+This module contains a function
+'''
+
 import requests
 import sys
 
