@@ -15,3 +15,4 @@ def fetch_status(url):
     print("Body response:")
     print(f"\t- type: {type(response.content)}")
     print(f"\t- content: {response.content.decode()}")
+    
