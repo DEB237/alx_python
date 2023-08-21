@@ -17,7 +17,4 @@ class BaseGeometry:
         """
         attributes = super().__dir__()
         return [attr for attr in attributes if attr != 'init_subclass']'''
-    
-bg = BaseGeometry()
-
-print(dir(BaseGeometry))    
+      
