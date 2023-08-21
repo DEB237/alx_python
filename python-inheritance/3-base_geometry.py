@@ -11,7 +11,7 @@ class BaseGeometry:
     pass
 
     @classmethod
-    def __dir__(cls):
+    def __dir__():
         """
         Returns a list of attributes for the class, excluding init_subclass.
         """
