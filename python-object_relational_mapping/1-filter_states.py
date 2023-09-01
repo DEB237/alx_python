@@ -1,5 +1,5 @@
 """
-This script lists all states with names starting 
+This script lists all states with names starting
 with 'N' from a MySQL database.
 """
 
@@ -20,7 +20,7 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     # Execute the query to select states starting with 'N'
-    query = "SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY states.id***"
+    query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
     cursor.execute(query)
 
     # Fetch and print the results
