@@ -13,17 +13,16 @@ if __name__ == "__main__":
     db_name = sys.argv[3]
 
     # Connect to MySQL server
-    db = MySQLdb.connect(host="localhost", user=mysql_user, 
-                        passwd=mysql_password, db=db_name, port=3306)
+    db = MySQLdb.connect(host="localhost", user=mysql_user,
+                         passwd=mysql_password, db=db_name, port=3306)
 
     # Create a cursor object
     cursor = db.cursor()
 
     # Execute the query to select states starting with 'N'
-    cursor.execute("""SELECT * FROM states WHERE name 
-             LIKE BINARY 'N%' ORDER BY states.id""")
-    
-
+    cursor.execute("""SELECT * FROM states WHERE name
+                       LIKE BINARY 'N%' ORDER BY states.id""")
+ 
     # Fetch and print the results
     results = cursor.fetchall()
     for row in results:
