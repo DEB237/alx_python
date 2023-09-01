@@ -19,7 +19,7 @@ if __name__ == "__main__":
     c = db.cursor()
 
     # Execute the query
-    c.execute("""SELECT * FROM states WHERE name 
+    c.execute("""SELECT * FROM states WHERE name
               LIKE BINARY '{}' ORDER BY id ASC""" .format(state_name))
 
     # Fetch all the rows and display them

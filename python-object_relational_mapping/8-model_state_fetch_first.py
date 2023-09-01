@@ -21,10 +21,9 @@ if __name__ == "__main__":
     # Fetch the first State object and display it
     state = session.query(State).order_by(State.id).first()
     if state is not None:
-      print(f"{state.id}: {state.name}")
+        print(f"{state.id}: {state.name}")
     else:
-      print("Nothing")
+        print("Nothing")
 
     # Close the session
     session.close()
-    

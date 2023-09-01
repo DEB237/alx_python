@@ -14,7 +14,7 @@ if __name__ == "__main__":
     state_name = sys.argv[4]
 
     # Connect to MySQL server
-    db = MySQLdb.connect(host="localhost", port=3306, 
+    db = MySQLdb.connect(host="localhost", port=3306,
                          user=username, passwd=password, db=database)
     cursor = db.cursor()
 
@@ -33,4 +33,3 @@ if __name__ == "__main__":
     # Close the database connection
     cursor.close()
     db.close()
-    
