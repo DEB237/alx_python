@@ -9,14 +9,14 @@ from model_state import Base, State
 
 if __name__ == "__main__":
     # Get command line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
+    # Get command line arguments
+    name = sys.argv[1]
+    pwd = sys.argv[2]
+    db = sys.argv[3]
 
     # Connect to MySQL server
-    engine = create_engine
-    (f'mysql+mysqldb://{username}:{password}@localhost:3306/{database}')
-    Session = sessionmaker(bind=engine)
+    e = create_engine(f'mysql+mysqldb://{name}:{pwd}@localhost:3306/{db}')
+    Session = sessionmaker(bind=e)
     session = Session()
 
     # Fetch all the State objects that contain 'a' and display them

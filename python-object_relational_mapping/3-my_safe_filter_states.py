@@ -1,6 +1,7 @@
 """
-This script that takes in arguments and displays all values in the states table of hbtn_0e_0_usa 
-where name matches the argument. But this time, write one that is safe from MySQL injections!
+This script that takes in arguments and displays all values in the
+states table of hbtn_0e_0_usa where name matches the argument.
+But this time, write one that is safe from MySQL injections!
 """
 import sys
 import MySQLdb
@@ -13,7 +14,8 @@ if __name__ == "__main__":
     state_name = sys.argv[4]
 
     # Connect to MySQL server
-    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
+    db = MySQLdb.connect(host="localhost", port=3306, 
+                         user=username, passwd=password, db=database)
     cursor = db.cursor()
 
     # Prepare the SQL query with query parameterization
@@ -31,3 +33,4 @@ if __name__ == "__main__":
     # Close the database connection
     cursor.close()
     db.close()
+    
