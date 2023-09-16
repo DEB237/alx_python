@@ -16,5 +16,5 @@ class BaseGeometry:
         Returns a list of attributes for the class, excluding init_subclass.
         """
         attributes = super().__dir__(cls)
-        return [attr for attr in attributes if attr != 'init_subclass' and 'reduce']
+        return [attr for attr in attributes if attr != '__init_subclass__' and '__reduce__']
       
