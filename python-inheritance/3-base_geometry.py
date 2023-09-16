@@ -5,9 +5,10 @@ class BaseGeometry:
     """
     An empty class representing the BaseGeometry.
     """
-    def __init_subclass__(cls):
-        pass  # Empty implementation to hide the __init_subclass__ method
-
     def __dir__(self):
-        # Exclude the __init_subclass__ method from the list of attributes and methods
-        return [attr for attr in self.__dict__.keys() if attr != '__init_subclass__']
+        # Get the list of attribute names from the class dictionary
+        attrs = list(self.__class__.__dict__.keys())
+        # Get the list of attribute names from the object dictionary
+        attrs += list(self.__dict__.keys())
+        # Remove duplicates and return sorted list
+        return sorted(set(attrs))
