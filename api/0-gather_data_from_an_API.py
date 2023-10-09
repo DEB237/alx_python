@@ -22,6 +22,14 @@ def get_employee_todo_list_progress(employee_id):
   response = urllib.request.urlopen(employee_details_url)
   employee_details = json.loads(response.read().decode("utf-8"))
 
+  # Check if the employee exists.
+  if not employee_details:
+    raise Exception("Employee does not exist.")
+
+  # Check if the employee has a name.
+  if not employee_details["name"]:
+    raise Exception("Employee does not have a name.")
+
   # Calculate the number of completed and total tasks.
   number_of_completed_tasks = 0
   total_number_of_tasks = len(todo_list_items)
@@ -42,7 +50,11 @@ def main():
   employee_id = int(input("Enter the employee ID: "))
 
   # Get the employee's todo list progress.
-  todo_list_progress = get_employee_todo_list_progress(employee_id)
+  try:
+    todo_list_progress = get_employee_todo_list_progress(employee_id)
+  except Exception as e:
+    print(e)
+    exit(1)
 
   # Display the employee's todo list progress on the standard output.
   print(f"Employee {todo_list_progress['name']} is done with tasks({todo_list_progress['number_of_completed_tasks']}/{todo_list_progress['total_number_of_tasks']}):")
