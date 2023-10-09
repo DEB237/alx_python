@@ -1,6 +1,6 @@
-import urllib.request
-import json
 import csv
+import json
+import urllib.request
 
 def get_employee_todo_list_progress(employee_id):
   """Returns the todo list progress for an employee with the given ID.

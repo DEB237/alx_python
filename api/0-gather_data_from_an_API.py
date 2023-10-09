@@ -1,5 +1,5 @@
-import urllib.request
 import json
+import urllib.request
 
 def get_employee_todo_list_progress(employee_id):
   """Returns the todo list progress for an employee with the given ID.
@@ -41,10 +41,10 @@ def main():
   # Get the employee ID from the user.
   employee_id = int(input("Enter the employee ID: "))
 
-  # Get the employee's TODO list progress.
+  # Get the employee's todo list progress.
   todo_list_progress = get_employee_todo_list_progress(employee_id)
 
-  # Display the employee's TODO list progress on the standard output.
+  # Display the employee's todo list progress on the standard output.
   print(f"Employee {todo_list_progress['name']} is done with tasks({todo_list_progress['number_of_completed_tasks']}/{todo_list_progress['total_number_of_tasks']}):")
   for todo_list_item in todo_list_progress["todo_list_items"]:
     if todo_list_item["completed"]:
