@@ -2,6 +2,7 @@ import csv
 import requests
 import sys
 
+
 def get_employee_info(employee_id: int) -> dict:
     url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
     response = requests.get(url)
