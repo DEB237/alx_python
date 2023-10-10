@@ -33,6 +33,8 @@ def export_to_csv(employee_id: int) -> None:
             task_completed = str(task['completed'])
             writer.writerow([employee_id, employee_name, task_completed, task_title])
 
+    num_total_tasks = len(todo_list)
+    print(f"Number of tasks in CSV: {num_total_tasks} - OK")
     print(f"Data exported to {file_name}")
 
 
