@@ -18,21 +18,24 @@ def get_todo_list(employee_id: int) -> list:
 def export_to_csv(employee_id: int) -> None:
     employee_info = get_employee_info(employee_id)
     todo_list = get_todo_list(employee_id)
+    employee_name = employee_info.get("name", "Unknown")
 
-    employee_name = employee_info.get('name', 'Unknown')
+    csv_data = [
+        ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"],
+    ]
+
+    for task in todo_list:
+        task_id = task["id"]
+        task_title = task["title"]
+        task_completed = task["completed"]
+
+        csv_data.append([task_id, employee_name, str(task_completed), task_title])
 
     file_name = f"{employee_id}.csv"
 
-    with open(file_name, 'w', newline='') as csvfile:
+    with open(file_name, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
-
-        for task in todo_list:
-            task_id = task.get('id', '')
-            task_title = task.get('title', '')
-            task_completed = task.get('completed', False)
-
-            writer.writerow([task_id, employee_name, str(task_completed), task_title])
+        writer.writerows(csv_data)
 
     print(f"Data exported to {file_name}")
 
