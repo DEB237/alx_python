@@ -1,3 +1,9 @@
+import csv
+from typing import List
+import requests
+import sys
+
+
 def get_employee_info(employee_id: int) -> dict:
     url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
     response = requests.get(url)
@@ -25,9 +31,7 @@ def export_to_csv(employee_id: int) -> None:
             task_id = task['id']
             task_title = task['title']
             task_completed = str(task['completed'])
-            writer.writerow(
-                [f'"{employee_id}"', f'"{employee_name}"', f'"{task_completed}"', f'"{task_title}"']
-            )
+            writer.writerow([employee_id, employee_name, task_completed, task_title])
 
     num_total_tasks = len(todo_list)
     print(f"Number of tasks in CSV: {num_total_tasks} - OK")
