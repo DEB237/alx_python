@@ -5,51 +5,32 @@ import json
 import requests
 import sys
 
-
-def get_employee_info(employee_id: int) -> dict:
-    url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    response = requests.get(url)
-    return response.json()
-
-
-def get_todo_list(employee_id: int) -> list:
-    url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
-    response = requests.get(url)
-    return response.json()
-
-
-def export_to_json(employee_id: int) -> None:
-    employee_info = get_employee_info(employee_id)
-    todo_list = get_todo_list(employee_id)
-
-    employee_name = employee_info.get('name', 'Unknown')
-    records = []
-
-    for task in todo_list:
-        task_title = task.get('title', '')
-        task_completed = task.get('completed', False)
-
-        record = {
-            'task': task_title,
-            'completed': task_completed,
-            'username': employee_name
-        }
-
-        records.append(record)
-
-    data = {str(employee_id): records}
-    file_name = f"{employee_id}.json"
-
-    with open(file_name, 'w') as json_file:
-        json.dump(data, json_file)
-
-    print(f"Data exported to {file_name}")
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print("Usage: python3 2-export_to_JSON.py <employee_id>")
+        print(f"Usage: {sys.argv[0]} EMPLOYEE_ID")
         sys.exit(1)
 
-    employee_id = int(sys.argv[1])
-    export_to_json(employee_id)
+    employee_id = sys.argv[1]
+    todos_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
+    user_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
+
+    try:
+        todos_response = requests.get(todos_url)
+        user_response = requests.get(user_url)
+        todos_response.raise_for_status()
+        user_response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print(f'Error: {err}')
+        sys.exit(1)
+
+    todos = todos_response.json()
+    user = user_response.json()
+
+    completed_tasks = [{"task": todo['title'], "completed": todo['completed'], "username": user['name']} for todo in todos]
+
+    data = {employee_id: completed_tasks}
+
+    with open(f"{employee_id}.json", mode='w') as file:
+        json.dump(data, file)
+    
+    print(f"Data has been exported to {employee_id}.json")
