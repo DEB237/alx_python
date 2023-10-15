@@ -1,7 +1,7 @@
 import csv
-from typing import List
 import requests
 import sys
+from typing import List
 
 
 def get_employee_info(employee_id: int) -> dict:
