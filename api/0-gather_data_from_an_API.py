@@ -1,7 +1,7 @@
 import csv
+from typing import List
 import requests
 import sys
-from typing import List
 
 
 def get_employee_info(employee_id: int) -> dict:
@@ -45,3 +45,4 @@ if __name__ == "__main__":
 
     employee_id = int(sys.argv[1])
     export_to_csv(employee_id)
+    
