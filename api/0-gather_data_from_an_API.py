@@ -23,9 +23,12 @@ if __name__ == '__main__':
     user = user_response.json()
 
     completed_tasks = [todo for todo in todos if todo['completed']]
-    num_completed_tasks = len(completed_tasks)
-    num_total_tasks = len(todos)
+    NUMBER_OF_DONE_TASKS = len(completed_tasks)
+    TOTAL_NUMBER_OF_TASKS = len(todos)
 
-    print(f"Employee {user['name']} is done with tasks({num_completed_tasks}/{num_total_tasks}):")
+    EMPLOYEE_NAME = user['name']
+
+    print(f"Employee {EMPLOYEE_NAME} is done with tasks({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
     for task in completed_tasks:
-        print(f"\t{task['title']}")
+        TASK_TITLE = task['title']
+        print(f"\t{TASK_TITLE}")
