@@ -1,48 +1,31 @@
-import csv
 import requests
 import sys
-from typing import List
 
-
-def get_employee_info(employee_id: int) -> dict:
-    url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    response = requests.get(url)
-    return response.json()
-
-
-def get_todo_list(employee_id: int) -> List[dict]:
-    url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
-    response = requests.get(url)
-    return response.json()
-
-
-def export_to_csv(employee_id: int) -> None:
-    employee_info = get_employee_info(employee_id)
-    todo_list = get_todo_list(employee_id)
-
-    employee_name = employee_info.get('name', 'Unknown')
-
-    file_name = f"{employee_id}.csv"
-    with open(file_name, 'w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
-
-        for task in todo_list:
-            task_id = task['id']
-            task_title = task['title']
-            task_completed = str(task['completed'])
-            writer.writerow([employee_id, employee_name, task_completed, task_title])
-
-    num_total_tasks = len(todo_list)
-    print(f"Number of tasks in CSV: {num_total_tasks} - OK")
-    print(f"Data exported to {file_name}")
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print("Usage: python3 1-export_to_CSV.py <employee_id>")
+        print('Usage: python todo.py <employee_id>')
         sys.exit(1)
 
-    employee_id = int(sys.argv[1])
-    export_to_csv(employee_id)
-    
+    employee_id = sys.argv[1]
+    todos_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
+    user_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
+
+    try:
+        todos_response = requests.get(todos_url)
+        user_response = requests.get(user_url)
+        todos_response.raise_for_status()
+        user_response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print(f'Error: {err}')
+        sys.exit(1)
+
+    todos = todos_response.json()
+    user = user_response.json()
+
+    completed_tasks = [todo for todo in todos if todo['completed']]
+    num_completed_tasks = len(completed_tasks)
+    num_total_tasks = len(todos)
+
+    print(f"Employee {user['name']} is done with tasks({num_completed_tasks}/{num_total_tasks}):")
+    for task in completed_tasks:
+        print(f"\t{task['title']}")
