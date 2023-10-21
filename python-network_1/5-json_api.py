@@ -5,29 +5,19 @@ This module contains a function
 import sys
 import requests
 
-if __name__ == "__main__":
-    """
-    Search User API Script
-    
-    This script sends a POST request to the Search API with a letter as a parameter. 
-    It retrieves the JSON response and prints the ID and name if available, 
-    or displays appropriate messages if the JSON is invalid or empty.
-    """
+if len(sys.argv) == 1:
+    letter = ""
+else:
+    letter = sys.argv[1]
 
-    if len(sys.argv) > 1:
-        letter = sys.argv[1]
+parameter = {'q':letter}
+url = 'http://0.0.0.0:5000/search_user'
+response = requests.post(url, data=parameter)
+
+try:
+    if response.json():
+            print("[{}] {}".format(response.json()['id'], response.json()['name']))
     else:
-        letter = ""
-    
-    url = "http://0.0.0.0:5000/search_user"
-    payload = {"q": letter}
-
-    response = requests.post(url, data=payload)
-    try:
-        data = response.json()
-        if data:
-            print(f"[{data['id']}] {data['name']}")
-        else:
-            print("No result")
-    except ValueError:
-        print("Not a valid JSON")
+        print("No result")
+except:
+    print("Not a valid JSON")
