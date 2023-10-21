@@ -1,13 +1,13 @@
 """
 Module that defines the BaseGeometry class.
 """
-
 class OverrideMetaClass(type):
     """
-    Def __new__(cls, name, bases, attrs):
+    This is a class
+    """
+    def __new__(cls, name, bases, attrs):
         # Customize the class creation process here
         return super().__new__(cls, name, bases, attrs)
-    """
 
     def __dir__(cls):
         """
