@@ -1,20 +1,9 @@
-'''
-This module contains a function
-'''
+"""
+Make a get request to a webpage
+"""
 import requests
 
-def fetch_status(url):
-    """
-    Fetches the status from the given URL and displays the response body.
-
-    Args:
-        url (str): The URL to fetch the status from.
-
-    Returns:
-        None
-    """
-    response = requests.get(url)
-
-    print("Body response:")
-    print(f"\t- type: {type(response.content)}")
-    print(f"\t- content: {response.content.decode()}")
+response = requests.get('https://alu-intranet.hbtn.io/status')
+print("Body response:")
+print("\t- type: {}\n"
+      "\t- content: {}".format(type(response.text), response.text))
