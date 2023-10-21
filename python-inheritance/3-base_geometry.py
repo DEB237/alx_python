@@ -3,9 +3,9 @@ This module is an empty class
 """
 
 class OverrideMetaClass(type):
- """
- Override original inherited attributes from parent
- """
+  """
+  Override original inherited attributes from parent
+  """
     def __new__(cls, name, bases, attrs):
         # Customize the class creation process here
         return super().__new__(cls, name, bases, attrs)
