@@ -1,6 +1,8 @@
 """
 Module that defines the BaseGeometry class.
 """
+
+
 class OverrideMetaClass(type):
     """
     This is a class
