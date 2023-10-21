@@ -1,11 +1,10 @@
 """
-Module that defines the BaseGeometry class.
+This module is an empty class 
 """
-
 
 class OverrideMetaClass(type):
     """
-    This is a class
+    Override original inherited attributes from parent
     """
     def __new__(cls, name, bases, attrs):
         # Customize the class creation process here
