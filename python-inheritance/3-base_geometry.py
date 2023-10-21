@@ -1,6 +1,7 @@
 """
 Module that defines the BaseGeometry class.
 """
+
 class OverrideMetaClass(type):
     """
     Def __new__(cls, name, bases, attrs):
