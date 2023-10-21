@@ -1,7 +1,6 @@
 """
 Module containing the Rectangle class.
 """
-
 class OverrideMetaClass(type):
     """def __new__(cls, name, bases, attrs):
         # Customize the class creation process here
