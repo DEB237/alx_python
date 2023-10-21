@@ -1,6 +1,25 @@
-"""
-This script starts a Flask web application:
-"""
+'''
+This python script starts a Flask web application and
+displays a text on the screen.
+
+function:
+    hello(): Displays a text on the screen
+        return - Text
+
+    hbnb(): Displays a text on the screen
+        return - Text
+
+    c(text): Displays a text on the screen
+        return - Text
+
+    python_(text=none): Displays a text on the screen
+        return - Text
+
+    numb(n): Chexks if n is integer
+        return - Text
+'''
+
+# Import the class Flask from flask module
 from flask import Flask, render_template
 from markupsafe import escape
 
