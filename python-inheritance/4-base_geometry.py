@@ -1,6 +1,7 @@
 """
 Module that defines a class
 """
+
 class BaseGeometry:
     """
     This class represents the base geometry.
