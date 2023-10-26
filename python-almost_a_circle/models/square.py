@@ -3,9 +3,8 @@ This class implement the square method based and also inherit from the
 Rectanngle class we previously built
 '''
 
-# from rectangle import Rectangle
 from models.rectangle import Rectangle
-# 
+
 
 class Square(Rectangle):
     '''
