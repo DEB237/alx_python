@@ -1,4 +1,3 @@
-#!/use/bin/python3
 """
 Write a class Rectangle that inherits from BaseGeometry (5-base_geometry.py).
 """
