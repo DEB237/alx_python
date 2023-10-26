@@ -1,30 +1,27 @@
-"""An empty class"""
-class BaseGeometry:
-    """My BaseGeometry class"""
-    pass
-    
-    def area(self):
-        """function Area"""
-        raise Exception("area() is not implemented")
+"""
+Write a class Rectangle that inherits from BaseGeometry (5-base_geometry.py).
+"""
+BaseGeometry = __import__('5-base_geometry').BaseGeometry
 
-    def integer_validator(self, name, value):
-        """function integer_validator"""
-        if type(value) != int:
-            raise TypeError(f"{name} must be an integer")
-        if value <= 0:
-            raise ValueError(f"{name} must be greater than 0")
-        
-class Rectangle(BaseGeometry):
-    """A Rectangle subclass"""
+class BaseGeometryMetaClass(type):
+    """
+    A metaclass for BAse geometry
+    """
+    def __dir__(cls)->None:
+        """
+        A function define to remove the __init_subclass__ from dir
+        """
+        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__']
+
+class Rectangle(BaseGeometry, metaclass=BaseGeometryMetaClass):
+    """
+    Write a class Rectangle that inherits from BaseGeometry (5-base_geometry.py).
+    """
     def __init__(self, width, height):
         """
-        Define the init method and inherits from the super.
-        Arguments:
-            width
-            height
+        initialaization function for base geometry
         """
-        super()
+        width = BaseGeometry.integer_validator(self, "width", width)
+        height = BaseGeometry.integer_validator(self, "height", height)
         self.__width = width
         self.__height = height
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
