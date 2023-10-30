@@ -1,36 +1,35 @@
+#!/usr/bin/python3
 """
-This is a Module
+Python script to export data to a JSON file.
 """
+
 import json
 import requests
 import sys
 
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print(f"Usage: {sys.argv[0]} EMPLOYEE_ID")
-        sys.exit(1)
 
-    employee_id = sys.argv[1]
-    todos_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
-    user_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
+def export_to_CSV(user_id):
+    employee_name = requests.get(
+        "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
+    ).json()["username"]
+    tasks = requests.get(
+        "https://jsonplaceholder.typicode.com/users/{}/todos".format(user_id)
+    ).json()
 
-    try:
-        todos_response = requests.get(todos_url)
-        user_response = requests.get(user_url)
-        todos_response.raise_for_status()
-        user_response.raise_for_status()
-    except requests.exceptions.HTTPError as err:
-        print(f'Error: {err}')
-        sys.exit(1)
+    tasks_data = {str(user_id): []}
 
-    todos = todos_response.json()
-    user = user_response.json()
+    for task in tasks:
+        tasks_data[str(user_id)].append(
+            {
+                "task": task["title"],
+                "completed": task["completed"],
+                "username": employee_name,
+            }
+        )
 
-    completed_tasks = [{"task": todo['title'], "completed": todo['completed'], "username": user['name']} for todo in todos]
+    with open(str(user_id) + ".json", "w", encoding="UTF8", newline="") as f:
+        json.dump(tasks_data, f)
 
-    data = {employee_id: completed_tasks}
 
-    with open(f"{employee_id}.json", mode='w') as file:
-        json.dump(data, file)
-    
-    print(f"Data has been exported to {employee_id}.json")
+if __name__ == "__main__":
+    export_to_CSV(sys.argv[1])

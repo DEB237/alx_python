@@ -1,34 +1,28 @@
-import requests
-import sys
+"""
+Python Script that uses the jsonplaceholder REST API
+"""
+if __name__ == "__main__":
+    import requests
+    from sys import argv
 
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print('Usage: python todo.py <employee_id>')
-        sys.exit(1)
+    user_id = argv[1]
+    r_user = requests.get(
+        "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
+    )
+    r_todos = requests.get(
+        "https://jsonplaceholder.typicode.com/users/{}/todos".format(user_id)
+    )
 
-    employee_id = sys.argv[1]
-    todos_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
-    user_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
+    tasks = r_todos.json()
+    completed_tasks_titles = [
+        task["title"] for task in tasks if task["completed"]
+    ]
 
-    try:
-        todos_response = requests.get(todos_url)
-        user_response = requests.get(user_url)
-        todos_response.raise_for_status()
-        user_response.raise_for_status()
-    except requests.exceptions.HTTPError as err:
-        print(f'Error: {err}')
-        sys.exit(1)
+    print(
+        "Employee {} is done with tasks({}/{}):".format(
+            r_user.json()["name"], len(completed_tasks_titles), len(tasks)
+        )
+    )
 
-    todos = todos_response.json()
-    user = user_response.json()
-
-    completed_tasks = [todo for todo in todos if todo['completed']]
-    NUMBER_OF_DONE_TASKS = len(completed_tasks)
-    TOTAL_NUMBER_OF_TASKS = len(todos)
-
-    EMPLOYEE_NAME = user['name']
-
-    print(f"Employee {EMPLOYEE_NAME} is done with tasks({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
-    for task in completed_tasks:
-        TASK_TITLE = task['title']
-        print(f"\t{TASK_TITLE}")
+    for title in completed_tasks_titles:
+        print("\t {}".format(title))

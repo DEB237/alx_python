@@ -1,32 +1,38 @@
+#!/usr/bin/python3
 """
-This is a Module
+Python script to export all employees data to a JSON file.
 """
+
 import json
 import requests
 import sys
 
-if __name__ == '__main__':
-    employee_id = sys.argv[1]
-    todos_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
-    user_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
 
-    try:
-        todos_response = requests.get(todos_url)
-        user_response = requests.get(user_url)
-        todos_response.raise_for_status()
-        user_response.raise_for_status()
-    except requests.exceptions.HTTPError as err:
-        print(f'Error: {err}')
-        sys.exit(1)
+def export_employees_data_json():
+    employees_ids = [
+        employee["id"]
+        for employee in requests.get(
+            "https://jsonplaceholder.typicode.com/users/"
+        ).json()
+    ]
+    employees_data = {}
 
-    todos = todos_response.json()
-    user = user_response.json()
+    for id in employees_ids:
+        tasks = requests.get(
+            "https://jsonplaceholder.typicode.com/users/{}/todos".format(id)
+        ).json()
+        employees_data[str(id)] = [
+            {
+                "username": requests.get(
+                    "https://jsonplaceholder.typicode.com/users/{}".format(id)
+                ).json()["username"],
+                "task": task["title"],
+                "completed": task["completed"]
+            }
+            for task in tasks
+        ]
+    with open("todo_all_employees.json", "w", encoding="UTF8", newline="") as f:
+        json.dump(employees_data, f)
 
-    completed_tasks = [{"task": todo['title'], "completed": todo['completed'], "username": user['name']} for todo in todos]
-
-    data = {employee_id: completed_tasks}
-
-    with open(f"todo_all_employee.json", mode='a', encoding='utf-8') as file:
-        file.write(json.dumps(data, ensure_ascii=False))
-    
-    print(f"Data has been exported to todo_all_employee.json")
+if __name__ == "__main__":
+    export_employees_data_json()
