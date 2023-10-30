@@ -1,38 +1,39 @@
-'''
-This class implement the square method based and also inherit from the 
-Rectanngle class we previously built
-'''
+#!/usr/bin/python3
+"""
+A module that contains the Square class
+"""
 
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    '''
-    this is a class that inherit from the rectangle class
-    '''
+    """
+    The Square class
+    """
+
     def __init__(self, size, x=0, y=0, id=None):
-        '''
-        instantation of the square class
-        '''
-        super().__init__(width=size,height=size, x=x,y=y, id=id)
-        
+        """Instantiation method"""
+        super().__init__(id=id, width=size, height=size, x=x, y=y)
+
     def __str__(self):
-        '''
-        This method convert the objects to strings
-        '''
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
+        """
+        Defines the value that will be returned when print() and str() are used
+        """
+        return "[Square] ({:d}) {:d}/{:d} - {:d}".format(
+            self.id, self.x, self.y, self.width
+        )
 
     @property
     def size(self):
-        '''
-        This method is defined to get te size of the object
-        '''
-        return super().Rectangle__width
+        """Public getter method for size"""
+        return self.width
 
     @size.setter
-    def size(self, size):
-        '''
-        THis is a setter method for size
-        '''
-        Rectangle.validation(self, 'width', size)
-        super().__init__(size, size)
+    def size(self, value):
+        """Public setter method for size"""
+        if type(value) != int:
+            raise TypeError("width must be an integer")
+        if value <= 0:
+            raise ValueError("width must be > 0")
+        self.width = value
+        self.height = value
