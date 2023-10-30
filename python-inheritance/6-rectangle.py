@@ -1,27 +1,20 @@
+#!/usr/bin/python3
 """
-Write a class Rectangle that inherits from BaseGeometry (5-base_geometry.py).
+A module that contains the class Rectangle which inherits from BaseGeometry
 """
-BaseGeometry = __import__('5-base_geometry').BaseGeometry
 
-class BaseGeometryMetaClass(type):
-    """
-    A metaclass for BAse geometry
-    """
-    def __dir__(cls)->None:
-        """
-        A function define to remove the __init_subclass__ from dir
-        """
-        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__']
 
-class Rectangle(BaseGeometry, metaclass=BaseGeometryMetaClass):
+BaseGeometry = __import__("5-base_geometry").BaseGeometry
+
+
+class Rectangle(BaseGeometry):
     """
-    Write a class Rectangle that inherits from BaseGeometry (5-base_geometry.py).
+    A class that defines a Recatngle that inherits from BaseGeometry
     """
+
     def __init__(self, width, height):
-        """
-        initialaization function for base geometry
-        """
-        width = BaseGeometry.integer_validator(self, "width", width)
-        height = BaseGeometry.integer_validator(self, "height", height)
+        """Instantiation method"""
+        self.integer_validator("width", width)
+        self.integer_validator("height", height)
         self.__width = width
         self.__height = height
